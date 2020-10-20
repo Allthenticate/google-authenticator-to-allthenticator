@@ -2,7 +2,7 @@
 I recently got myself a Yubikey and wanted to set up the Yubico Authenticator with all the OTPs I had in Google Authenticator.
 Unfortunately Yubico Authenticator doesn't support scanning the QR-code that the Google Authenticator generates when you export
 the OTP-keys, and it seemed like quite the daunting task to log in to every service to generate new OTP-keys. So I decided to
-have a look at the contents of the QR code, and see if I could import the keys into Yubico Authenticator in one go. Luckily
+have a look at the contents of the QR code, to see if I could import the keys into Yubico Authenticator in one go. Luckily
 I found a [blog post by Alex Bakker](https://alexbakker.me/post/parsing-google-auth-export-qr-code.html) that describes the 
 data format.
 
@@ -11,8 +11,8 @@ Unfortunately, but likely for the best, the security policy of Google Authentica
 the generated export-all QR-code. Since my phone is also the only device I own with a decent camera, I had to resign to snap
 a picture of QR-code on the phone screen using the built-in webcam of my laptop. If you also use a low quality camera you 
 might run into the same issue that I did, namely that the picture will have too much noice for QR-code readers to interpret
-the QR-code. The easiest way around it was split the export into two QR-codes. I used the Linux desktop app 
-[Kamoso](https://userbase.kde.org/Kamoso) to snap the pictures.
+the QR-code. The easiest way around it was split the export into multiple QR-codes, which for me meant two codes instead of 
+twenty. I used the Linux desktop app [Kamoso](https://userbase.kde.org/Kamoso) to snap the pictures.
 
 # Extract OTP-keys
 To extract the OTP-keys from the Google Authenticator QR-code is a four-step procedure:
