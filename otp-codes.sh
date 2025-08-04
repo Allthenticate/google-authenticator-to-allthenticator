@@ -1,8 +1,8 @@
 #!/bin/bash
 
-qrcode="$(zbarimg $1 2>/dev/null)"
-url="${qrcode/#QR-Code:}"
-echo "Parsing: $url"
-echo "-----------------------"
-echo ""
-node index.js "$url"
+# Decode all the QR codes given on the command line
+for qrfile in "$@"; do
+    qrcode="$(zbarimg -q --raw "$qrfile" 2>/dev/null)"
+    url="${qrcode/#QR-Code:}"
+    node index.js "$url"
+done

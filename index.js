@@ -21,10 +21,10 @@ async function printOTPCodes(otpBuffer) {
     const otpArray = payload.otpParameters;
     for(let i = 0; i < otpArray.length; i++) {
         const otp = otpArray[i];
-        console.log("Issuer: " + otp.issuer);
-        console.log("Name: " + otp.name);
-        console.log("Secret: " + base32.encode(otp.secret));
-        console.log("-----------------------------------");
+	    console.log("otpauth://totp/" + 
+            (otp.issuer == undefined ? "" : otp.issuer) + 
+            ":" + otp.name + 
+            "?secret=" + base32.encode(otp.secret))
     }
 }
 

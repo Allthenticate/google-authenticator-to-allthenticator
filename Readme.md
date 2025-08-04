@@ -1,3 +1,10 @@
+# Importing to ALLthenticator
+
+After installing ALLthenticator, I needed a way to import my Google Authenticator OTP codes because I wan't going to go
+to 50 websites and register a new authenticator. I found [a Gist](https://gist.github.com/mapster/4b8b9f8f6b92cc1ca58ae5506e0508f7) by [Alexander Hoem Rosbach](https://gist.github.com/mapster) that decoded the QR codes and printed them to the terminal. I slightly modified this code to convert the data to `otpauth://` URLs so I could turn them into QR codes to import into ALLthenticator.
+
+[!IMPORTANT] The below sections are mostly from Alexander's Gist, but have been slightly modified for clarification. The "I", they speak of is Alexander, not me.
+
 # Export Google Authenticator secret OTP-keys
 I recently got myself a Yubikey and wanted to set up the Yubico Authenticator with all the OTPs I had in Google Authenticator.
 Unfortunately Yubico Authenticator doesn't support scanning the QR-code that the Google Authenticator generates when you export
@@ -19,17 +26,19 @@ To extract the OTP-keys from the Google Authenticator QR-code is a four-step pro
 1. Extract data-URL from the QR-code
 2. Base64 Decode the query parameter `data`
 3. Decode the protobuf message
-4. For each OTP-key; base32 decode the secret field
+4. For each OTP-key; base32 encode the secret field
 
 ## Requirements
 - nodejs
-- zbar-tools
+- zbar-tools (you will need to install this via your package manager)
 
 The `zbar-tools` package includes a tool to extract URLs from QR-codes. I did try to use `jimp` and `qrcode-reader` in the 
 javascript, but it didn't work straight out the box so I didn't bother spending more time to get it to work.
 
 ## Usage
-1. Download the files `package.json`, `index.js`, `migration-payload.proto` and `otp-codes.sh` to an empty directory
-2. Make `otp-codes.sh` executable: `chmod +x otp-codes.sh`
-3. Extract codes `./otp-codes.sh <path to qr-code image>`
-
+1. Clone this Git repository
+2. Make `otp-codes.sh` and `gen-qr-codes.sh` executable: `chmod +x *.sh`
+3. Extract codes `./otp-codes.sh <path to qr-code image 1> <path to qr-code image 2> <path to qr-code image 3> ... > urls.txt`
+4. Encode all the images to QR codes `./gen-qr-codes.sh`
+5. Import each code, one by one, using ALLthenticator's user interface
+6. DELETE `urls.txt` and each generated qr code file. These files contain your secrets and MUST NOT be kept.
