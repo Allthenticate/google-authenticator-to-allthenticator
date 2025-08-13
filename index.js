@@ -22,8 +22,8 @@ async function printOTPCodes(otpBuffer) {
     for(let i = 0; i < otpArray.length; i++) {
         const otp = otpArray[i];
 	    console.log("otpauth://totp/" + 
-            (otp.issuer == undefined ? "" : otp.issuer) + 
-            ":" + otp.name + 
+            (otp.issuer == undefined ? "" : encodeURIComponent(otp.issuer)) + 
+            ":" + encodeURIComponent(otp.name) + 
             "?secret=" + base32.encode(otp.secret))
     }
 }
