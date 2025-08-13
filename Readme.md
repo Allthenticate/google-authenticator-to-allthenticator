@@ -45,10 +45,11 @@ javascript, but it didn't work straight out the box so I didn't bother spending 
 ```
 npm i
 ```
-4. Take a screenshot of your exported QR code from Google Authenticator
+4. Take a screenshot of your exported QR code from Google Authenticator and save it to your disk
 5. Extract codes, which will be automatically displayed and scan them with the Allthenticator
 ```bash
 ./otp-codes.sh <path to screenshot>
 ```
-    Press `ESC` to advance each picture
 6. Import each code, one by one, using ALLthenticator's user interface
+    - Press `ESC` to advance each picture
+7. DELETE your screenshot!  That is your secrets!
