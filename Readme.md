@@ -37,8 +37,18 @@ javascript, but it didn't work straight out the box so I didn't bother spending 
 
 ## Usage
 1. Clone this Git repository
-2. Make `otp-codes.sh` and `gen-qr-codes.sh` executable: `chmod +x *.sh`
-3. Extract codes `./otp-codes.sh <path to qr-code image 1> <path to qr-code image 2> <path to qr-code image 3> ... > urls.txt`
-4. Encode all the images to QR codes `./gen-qr-codes.sh`
-5. Import each code, one by one, using ALLthenticator's user interface
-6. DELETE `urls.txt` and each generated qr code file. These files contain your secrets and MUST NOT be kept.
+2. Install dependencies
+```bash
+./install_dependencies.sh
+```
+3. Install node packages
+```
+npm i
+```
+4. Take a screenshot of your exported QR code from Google Authenticator
+5. Extract codes, which will be automatically displayed and scan them with the Allthenticator
+```bash
+./otp-codes.sh <path to screenshot>
+```
+    Press `ESC` to advance each picture
+6. Import each code, one by one, using ALLthenticator's user interface
